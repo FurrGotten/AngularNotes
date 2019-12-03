@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" class="notes">
   <mat-list fxFlex="100%" fxFlex.gt-sm="20%">
     <mat-list-item *ngFor='let note of notes | async'>
-      <a (click)="onSelectNote(note.id)">
+      <a [class.selected]="note.id === currentNote.id" (click)="onSelectNote(note.id)">
         {{note.title}}
       </a>
     </mat-list-item>
@@ -21,14 +21,14 @@
   </div>
   <div fxFlex="100%" fxFlex.gt-sm="70%" *ngIf="editNote" class="form-container">
     <form [formGroup]="editNoteForm" (ngSubmit)="updateNote()">
-      <mat-form-field class="full-width">
+      <mat-form-field class="full-width noteInput">
         <input matInput placeholder="Title" formControlName="title">
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field class="full-width noteInput">
         <textarea matInput placeholder="Note text" formControlName="text"></textarea>
       </mat-form-field>
-      <button mat-raised-button color="primary">Update</button>
+      <button mat-raised-button class="updateButton" color="primary">Update</button>
     </form>
   </div>
 </div>
