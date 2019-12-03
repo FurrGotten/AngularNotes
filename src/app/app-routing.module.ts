@@ -4,7 +4,7 @@ import { OktaCallbackComponent, OktaAuthGuard } from '@okta/okta-angular';
 
 import { HomeComponent } from './home/home.component';
 import { NotesComponent } from './notes/notes.component';
-
+//way to show program that we have elements
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'notes', component: NotesComponent, canActivate: [OktaAuthGuard] },

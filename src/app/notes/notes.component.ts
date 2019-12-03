@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   selector: 'app-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css']
-})
+})//references to View elements for View elements have direct direct access to properties
 export class NotesComponent implements OnInit {
   notes = new BehaviorSubject<NoteInfo[]>([]);
   currentNote: Note = {id:-1, title: '', text:''};
@@ -69,3 +69,4 @@ export class NotesComponent implements OnInit {
     this.editNote = false;
   }
 }
+//file contains what we do in different note changes

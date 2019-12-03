@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OktaAuthService } from '@okta/okta-angular';
+import {OktaAuthModule, OktaAuthService} from '@okta/okta-angular';
 
 @Component({
   selector: 'app-root',
@@ -27,3 +27,4 @@ export class AppComponent implements OnInit {
     this.oktaAuth.logout('/');
   }
 }
+//here we have login points for OktaAuthModule
