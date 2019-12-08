@@ -1,8 +1,9 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" class="notes">
   <mat-list fxFlex="100%" fxFlex.gt-sm="20%">
     <mat-list-item *ngFor='let note of notes | async'>
-      <a [class.selected]="note.id === currentNote.id" (click)="onSelectNote(note.id)">
-        {{note.title}}
+      <a  (click)="onSelectNote(note.id)">
+        <span [class.selected]="note.id === currentNote.id">{{note.title}} </span>
+        <span> {{note.createdAt}}</span>
       </a>
     </mat-list-item>
   </mat-list>
@@ -13,6 +14,7 @@
     <p>
       {{currentNote.text}}
     </p>
+<!--    <p>{{}}</p>-->
     <div fxLayout="row" fxLayoutAlign="space-between center" >
       <button mat-raised-button color="primary" (click)="onEditNote()" *ngIf="noteSelected()">Edit</button>
       <button mat-raised-button color="warn" (click)="onDeleteNote()" *ngIf="noteSelected()">Delete</button>
