@@ -10,7 +10,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })//references to View elements for View elements have direct direct access to properties
 export class NotesComponent implements OnInit {
   notes = new BehaviorSubject<NoteInfo[]>([]);
-  currentNote: Note = {id:-1, title: '', text:''};
+  currentNote: Note = {id:-1, title: '', text:'', createdAt: Date()};
   createNote = false;
   editNote = false;
   editNoteForm: FormGroup;
@@ -51,7 +51,7 @@ export class NotesComponent implements OnInit {
   onDeleteNote() {
     if (this.currentNote.id < 0) return;
     this.notesModel.deleteNote(this.currentNote.id);
-    this.currentNote = {id:-1, title: '', text:''};
+    this.currentNote = {id:-1, title: '', text:'', createdAt: Date()};
     this.editNote = false;
   }
 
@@ -64,7 +64,7 @@ export class NotesComponent implements OnInit {
     } else {
       const id = this.currentNote.id;
       this.notesModel.updateNote(id, title, text);
-      this.currentNote = {id, title, text};
+      this.currentNote = {id, title, text, createdAt: Date()};
     }
     this.editNote = false;
   }

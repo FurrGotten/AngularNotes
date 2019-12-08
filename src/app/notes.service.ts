@@ -4,12 +4,14 @@ import {BehaviorSubject, Observer} from 'rxjs';
 export class NoteInfo {
   id: number;
   title: string;
+  createdAt: string;
 }//Note id and title for our note list
 
 export class Note {
   id: number;
   title: string;
   text: string;
+  createdAt: string;
 }//full Note information, needed when you chose one note
 
 @Injectable({
@@ -33,7 +35,7 @@ export class NotesService {
   }
 
   addNote(title: string, text: string): Note {
-    const note = {id: this.nextId++, title, text};
+    const note = {id: this.nextId++, title, text, createdAt: Date()};
     this.notes.push(note);
     this.update();
     return note;
@@ -46,7 +48,7 @@ export class NotesService {
 
   updateNote(id: number, title: string, text: string) {
     const index = this.findIndex(id);
-    this.notes[index] = {id, title, text};
+    this.notes[index] = {id, title, text, createdAt: Date()};
     this.update();
   }
 
@@ -60,7 +62,7 @@ export class NotesService {
   private update() {
     localStorage.setItem('notes', JSON.stringify(this.notes));
     this.notesSubject.next(this.notes.map(
-      note => ({id: note.id, title: note.title})
+      note => ({id: note.id, title: note.title, createdAt: note.createdAt})
     ));
   }//private update method is called to update and save our notes in the Local storage
   //also update we use for giving a new value to notesSubject
