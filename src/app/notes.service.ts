@@ -4,14 +4,14 @@ import {BehaviorSubject, Observer} from 'rxjs';
 export class NoteInfo {
   id: number;
   title: string;
-  createdAt: string;
+  createdAt: number;
 }//Note id and title for our note list
 
 export class Note {
   id: number;
   title: string;
   text: string;
-  createdAt: string;
+  createdAt: number;
 }//full Note information, needed when you chose one note
 
 @Injectable({
@@ -35,7 +35,7 @@ export class NotesService {
   }
 
   addNote(title: string, text: string): Note {
-    const note = {id: this.nextId++, title, text, createdAt: Date()};
+    const note = {id: this.nextId++, title, text, createdAt: Date.now()};
     this.notes.push(note);
     this.update();
     return note;
@@ -48,7 +48,8 @@ export class NotesService {
 
   updateNote(id: number, title: string, text: string) {
     const index = this.findIndex(id);
-    this.notes[index] = {id, title, text, createdAt: Date()};
+    const createdAt = this.notes[index].createdAt
+    this.notes[index] = {id, title, text, createdAt};
     this.update();
   }
 

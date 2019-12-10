@@ -1,6 +1,6 @@
 .selected{
-text-shadow: gray 2px 2px;
-  font-size: 1.5em;
+  background: lightgray;
+  font-size: 1.1em;
 }
 .updateButton{
   margin-left: 40px;
@@ -10,4 +10,8 @@ text-shadow: gray 2px 2px;
 }
 .noteInput{
   margin-left: 20px;
+}
+.oneNote{
+  padding: 1em;
+  border-radius: 0.5em;
 }
