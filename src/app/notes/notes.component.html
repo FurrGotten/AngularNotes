@@ -1,9 +1,9 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" class="notes">
   <mat-list fxFlex="100%" fxFlex.gt-sm="20%">
     <mat-list-item *ngFor='let note of notes | async'>
-      <a  (click)="onSelectNote(note.id)">
-        <span [class.selected]="note.id === currentNote.id">{{note.title}} </span>
-        <span> {{note.createdAt}}</span>
+      <a [class.selected]="note.id === currentNote.id" class="oneNote" (click)="onSelectNote(note.id)">
+        <span>{{note.title}} </span>
+        <span> {{note.createdAt | date: 'dd/M/yy hh:mm'}}</span>
       </a>
     </mat-list-item>
   </mat-list>

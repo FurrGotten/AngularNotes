@@ -3,6 +3,8 @@ import { Note, NoteInfo, NotesService } from '../notes.service';
 import { BehaviorSubject } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+const notSelectedNote = {id:-1, title: '', text:'', createdAt: Date.now()}
+
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -10,7 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })//references to View elements for View elements have direct direct access to properties
 export class NotesComponent implements OnInit {
   notes = new BehaviorSubject<NoteInfo[]>([]);
-  currentNote: Note = {id:-1, title: '', text:'', createdAt: Date()};
+  currentNote: Note = notSelectedNote;
   createNote = false;
   editNote = false;
   editNoteForm: FormGroup;
@@ -51,7 +53,7 @@ export class NotesComponent implements OnInit {
   onDeleteNote() {
     if (this.currentNote.id < 0) return;
     this.notesModel.deleteNote(this.currentNote.id);
-    this.currentNote = {id:-1, title: '', text:'', createdAt: Date()};
+    this.currentNote = {id:-1, title: '', text:'', createdAt: Date.now()};
     this.editNote = false;
   }
 
@@ -64,7 +66,7 @@ export class NotesComponent implements OnInit {
     } else {
       const id = this.currentNote.id;
       this.notesModel.updateNote(id, title, text);
-      this.currentNote = {id, title, text, createdAt: Date()};
+      this.currentNote = notSelectedNote;
     }
     this.editNote = false;
   }
