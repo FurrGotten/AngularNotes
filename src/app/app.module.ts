@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { OktaAuthModule } from '@okta/okta-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule,
   MatMenuModule,
@@ -45,6 +46,7 @@ import { NotesComponent } from './notes/notes.component';
       redirectUri: 'http://localhost:4200/implicit/callback',
       clientId: '0oa21qfgd6gdsv7IR357'
     }),
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
